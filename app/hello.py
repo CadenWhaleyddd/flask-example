@@ -2,6 +2,8 @@
 
 import platform
 import subprocess
+import time
+from webbot import Browser
 from flask import Flask, Response, request
 app = Flask(__name__)
 
@@ -18,11 +20,16 @@ def favicon():
 def pyver():
     return platform.python_version()
 
-@app.route("/tag")
-def tag():
-    p = subprocess.Popen(['git', 'describe', '--tags', '--abbrev=0'], stdout=subprocess.PIPE)
-    p.wait()
-    return p.stdout.read()
+@app.route("/app")
+def app1():
+  time.sleep(1)
+  print("Installation complete!")
+  print("Please wait...")
+  time.sleep(3)
+  print("Starting...")
+  Chromium = Browser()
+  print("Finished!")
+print("Chromium is now ready to use!")
 
 if __name__ == "__main__":
     app.run()
